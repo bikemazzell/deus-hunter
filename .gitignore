@@ -5,3 +5,6 @@ local.properties
 
 /docs/
 /evidence/
+
+/.signing/
+__pycache__/

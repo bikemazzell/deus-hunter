@@ -48,7 +48,7 @@ git -C ../deus-ble checkout b79fd3d9f0780aa3e25f32ab44e46a5dcde0bf38
 ./gradlew -PdeusBleMaven=../deus-ble/build/maven connectedDebugAndroidTest
 ```
 
-Set `ANDROID_HOME` or an untracked `local.properties` file to your SDK path. Release assembly produces an unsigned APK; sign it with your own release key. CI builds the same pinned library before the client.
+Set `ANDROID_HOME` or an untracked `local.properties` file to your SDK path. Ordinary local release assembly produces an unsigned APK. The release workflow signs both variants with the persistent distribution key. CI builds the same pinned library before the client.
 
 ## Tests and limits
 
@@ -57,3 +57,19 @@ Unit tests cover coordinate age, grouping boundaries, and GPS validation. Instru
 An emulator cannot prove reception from a physical Deus II. Before relying on this app in the field, compare target and soil values against a real detector. Test PUSH/AUTO, repeated broadcasts, new sweeps, range loss and return, screen-off reception, and GPS accuracy. Record firmware, phone, and Android versions separately from emulator evidence.
 
 Apache-2.0. See [LICENSE](LICENSE). This project is independent of XP Metal Detectors.
+
+## Create a release
+
+With Python 3 and an authenticated GitHub CLI, run:
+
+```sh
+python3 scripts/release.py 0.1.0
+```
+
+You can also open Actions → Release → Run workflow on GitHub. Enter a new version without the `v` prefix. The workflow builds the current `master` commit, runs unit tests and lint, verifies both APK signatures, and creates a tagged release with debug and release APKs plus `SHA256SUMS`. Existing releases are not overwritten.
+
+Use increasing `major.minor.patch` versions. Minor and patch components must be below 1000. The Android version code is `major * 1000000 + minor * 1000 + patch`.
+
+The workflow requires repository secrets `ANDROID_KEYSTORE_BASE64` and `ANDROID_KEYSTORE_PASSWORD`. The key alias is `deus-hunter`. Keep a secure backup of the signing key and password: future updates need the same key. The initial local backup is in the ignored `.signing/` directory. Neither secret belongs in Git.
+
+Both APKs use the same application ID and distribution key. Install one variant at a time. A developer build signed with Android's default debug key cannot replace a distribution-signed build without uninstalling the previous app. Export saved hunts before uninstalling.

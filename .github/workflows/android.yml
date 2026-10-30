@@ -28,6 +28,9 @@ jobs:
       - name: Publish pinned BLE dependency locally
         working-directory: deus-ble
         run: ./gradlew publish
+      - name: Release script tests
+        working-directory: deus-hunter
+        run: python3 -m unittest discover -s tests -v
       - name: Unit tests, lint, and release build
         working-directory: deus-hunter
         run: ./gradlew -PdeusBleMaven=../deus-ble/build/maven testDebugUnitTest lintDebug assembleRelease

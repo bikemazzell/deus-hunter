@@ -1,0 +1,106 @@
+name: Release
+run-name: Release v${{ inputs.version }}
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version without v prefix (for example 0.1.0)'
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: release
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: deus-hunter
+      - name: Validate release version and script
+        working-directory: deus-hunter
+        run: |
+          python3 -m unittest discover -s tests -v
+          code=$(python3 scripts/release.py --version-code "$VERSION")
+          echo "VERSION_CODE=$code" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v5
+        with:
+          repository: bikemazzell/deus-ble
+          ref: b79fd3d9f0780aa3e25f32ab44e46a5dcde0bf38
+          path: deus-ble
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build pinned BLE library
+        working-directory: deus-ble
+        run: ./gradlew :core:test :android:testDebugUnitTest publish
+      - name: Prepare signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        shell: python
+        run: |
+          import base64, os
+          from pathlib import Path
+          if not os.environ['KEYSTORE_BASE64'] or not os.environ['ANDROID_KEYSTORE_PASSWORD']:
+              raise SystemExit('Configure both Android signing secrets before releasing.')
+          key = Path(os.environ['RUNNER_TEMP']) / 'deus-hunter-release.jks'
+          key.touch(mode=0o600, exist_ok=False)
+          key.write_bytes(base64.b64decode(os.environ['KEYSTORE_BASE64'], validate=True))
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'ANDROID_KEYSTORE_FILE={key}\n')
+      - name: Test and build both signed APKs
+        working-directory: deus-hunter
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          ./gradlew --max-workers=2 -PdeusBleMaven=../deus-ble/build/maven \
+            -PreleaseVersion="$VERSION" -PreleaseVersionCode="$VERSION_CODE" \
+            testDebugUnitTest lintDebug lintRelease assembleDebug assembleRelease
+      - name: Verify signatures and package assets
+        working-directory: deus-hunter
+        run: |
+          mkdir -p dist
+          for variant in release debug; do
+            apk="app/build/outputs/apk/$variant/app-$variant.apk"
+            "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose "$apk"
+            "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging "$apk" > "$RUNNER_TEMP/$variant-badging.txt"
+            cp "$apk" "dist/deus-hunter-$VERSION-$variant.apk"
+          done
+          if grep -q '^application-debuggable' "$RUNNER_TEMP/release-badging.txt"; then
+            echo 'Release APK must not be debuggable.' >&2
+            exit 1
+          fi
+          grep -q '^application-debuggable' "$RUNNER_TEMP/debug-badging.txt"
+          cd dist
+          sha256sum *.apk > SHA256SUMS
+      - name: Publish release with both APKs
+        working-directory: deus-hunter
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v$VERSION" \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "Deus Hunter $VERSION" \
+            --notes 'Includes signed release and debug APKs plus SHA-256 checksums. Both variants use the same application ID and signing key; install one variant at a time. Hardware compatibility remains unverified.' \
+            "dist/deus-hunter-$VERSION-release.apk" \
+            "dist/deus-hunter-$VERSION-debug.apk" dist/SHA256SUMS
+      - name: Remove temporary signing key
+        if: always()
+        shell: python
+        run: |
+          import os
+          from pathlib import Path
+          (Path(os.environ['RUNNER_TEMP']) / 'deus-hunter-release.jks').unlink(missing_ok=True)

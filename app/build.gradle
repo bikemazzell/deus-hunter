@@ -2,9 +2,24 @@ plugins { id 'com.android.application' }
 android {
  namespace 'io.github.deushunt'
  compileSdk 36
- defaultConfig { applicationId 'io.github.deushunt'; minSdk 26; targetSdk 36; versionCode 1; versionName '0.1.0'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
+ defaultConfig { applicationId 'io.github.deushunt'; minSdk 26; targetSdk 36; versionCode providers.gradleProperty('releaseVersionCode').map { it.toInteger() }.getOrElse(1); versionName providers.gradleProperty('releaseVersion').getOrElse('0.1.0'); testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
  compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
  buildFeatures { buildConfig true }
+ def signingPath = System.getenv('ANDROID_KEYSTORE_FILE')
+ if (signingPath) {
+  signingConfigs {
+   distribution {
+    storeFile file(signingPath)
+    storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+    keyAlias 'deus-hunter'
+    keyPassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+   }
+  }
+  buildTypes {
+   release { signingConfig signingConfigs.distribution }
+   debug { signingConfig signingConfigs.distribution }
+  }
+ }
 }
 dependencies {
  implementation 'io.github.deusble:deus-ble-android:0.1.0-SNAPSHOT'
