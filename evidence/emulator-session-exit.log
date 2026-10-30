@@ -1,0 +1,158 @@
+INFO         | Android emulator version 36.2.12.0 (build_id 14214601) (CL:N/A)
+INFO         | Graphics backend: gfxstream
+INFO         | Found systemPath /home/v/Android/Sdk/system-images/android-36/google_apis_playstore/x86_64/
+WARNING      | Please update the emulator to one that supports the feature(s): VulkanVirtualQueue
+INFO         | Increasing RAM size to 2048MB
+INFO         | Guest GLES Driver: Auto (ext controls)
+library_mode swiftshader_indirect gpu mode swiftshader_indirect
+INFO         | Checking system compatibility:
+INFO         |   Checking: hasSufficientDiskSpace
+INFO         |      Ok: Disk space requirements to run avd: `PlantLab-API36` are met
+INFO         |   Checking: hasSufficientHwGpu
+INFO         |      Ok: Hardware GPU compatibility checks are not required
+INFO         |   Checking: hasSufficientSystem
+INFO         |      Ok: System requirements to run avd: `PlantLab-API36` are met
+INFO         | Storing crashdata in: /tmp/android-v/emu-crash-36.2.12.db, detection is enabled for process: 3368887
+INFO         | Initializing hardware OpenGLES emulation support
+INFO         | android_startOpenglesRenderer: gpu info
+INFO         | 
+INFO         | HealthMonitor disabled.
+INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+INFO         | Setting ICD filenames for the loader = /home/v/Android/Sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix): begin
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so] failed (posix). dlerror: []
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix): begin
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] (posix,linux): call dlopen on [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1] failed (posix). dlerror: []
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so]
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so] (posix): begin
+INFO         | SharedLibrary::open for [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so] (posix,linux): call dlopen on [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so]
+INFO         | SharedLibrary::open succeeded for [/home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so].
+INFO         | Added library: /home/v/Android/Sdk/emulator/lib64/vulkan/libvulkan.so
+INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+INFO         | Disabling sparse binding feature support
+INFO         | SharedLibrary::open for [libGLESv2.so]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [libGLESv2.so] (posix): begin
+INFO         | SharedLibrary::open for [libGLESv2.so] (posix,linux): call dlopen on [libGLESv2.so]
+INFO         | SharedLibrary::open succeeded for [libGLESv2.so].
+INFO         | SharedLibrary::open for [libEGL.so]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [libEGL.so] (posix): begin
+INFO         | SharedLibrary::open for [libEGL.so] (posix,linux): call dlopen on [libEGL.so]
+INFO         | SharedLibrary::open succeeded for [libEGL.so].
+INFO         | SharedLibrary::open for [libX11]
+INFO         | SharedLibrary::open for [libX11]: not found in map, open for the first time
+INFO         | SharedLibrary::open for [libX11] (posix): begin
+INFO         | SharedLibrary::open for [libX11] (posix,linux): call dlopen on [libX11.so]
+INFO         | SharedLibrary::open succeeded for [libX11].
+INFO         | Initializing VkEmulation features:
+INFO         |     glInteropSupported: false
+INFO         |     useDeferredCommands: true
+INFO         |     createResourceWithRequirements: true
+INFO         |     useVulkanComposition: false
+INFO         |     useVulkanNativeSwapchain: false
+INFO         |     enable guestRenderDoc: false
+INFO         |     ASTC LDR emulation mode: Gpu
+INFO         |     enable ETC2 emulation: true
+INFO         |     enable Ycbcr emulation: false
+INFO         |     guestVulkanOnly: false
+INFO         |     useDedicatedAllocations: false
+INFO         | Graphics Adapter Vendor Google (Google Inc.)
+INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+INFO         | Graphics Device Extensions N/A
+INFO         | Sending adb public key [QAAAAK1DGB7b54GK4XUhD1VbF8fccfFxYxNvJLxrcJjmlCvSIgfr7cDOKh4YARNANnYHwgf1HLcJ/b4+a29LAd5E+kIj/xyrJE0+MYKszcQ5vyuLPwLnbbUG6fDTFCIdUZAqTGlRH78gnb3N02INnACF14AFRkKt2GR+638LVpw6oF0+ZE4WKasMoCeGCZYqW6okBpSLb3xAmQ86uvr+fLlfZazXzAvH/se0pypoEMwoaoFHW2PAw74DmoxXyZoLboASho4MDqkBplll1uZJz2GyjdXAy/vYClbQH87z6tHD/pTFidwl6iH8NJaJHPaQK2OVsYOyTzdmJW9W/RyMOZ4zsQaslLLTaDSVcuGtvSSXtHm0/SR/RucqiEGGYwH7vIOTyiqA2fMCsgOK/UhLIhc+TzoHH+p5NGdGwSKd7wvp+qS8bZd1nT45N9yEBKDeCISLhiixgZP0rdgdFjkWLZvhHiHqcv6iwoJnuhKcw4t5mjCpMD4zxvGqpGUW+n/iaKc3Zu7bKx0d8ST6dG3gwh1GZjhruX1kjMfWSRSEgzYReSj9D5dmxAYmly0aD2/Vvc0E5RCW4CaO7t1np8zNqD583AMvoJ1Xm+YEtpkMZZNIC4StotYNNoacujFNeSbVa1HFdr4v+I+jk83csVwuvZEzo/m8VvXScJvP5YK4Fi339WbLD9d6YwEAAQA= v@unknown]
+INFO         | Userspace boot properties:
+INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+INFO         |   androidboot.dalvik.vm.heapsize=512m
+INFO         |   androidboot.debug.hwui.renderer=skiagl
+INFO         |   androidboot.hardware=ranchu
+INFO         |   androidboot.hardware.gltransport=pipe
+INFO         |   androidboot.hardware.vulkan=ranchu
+INFO         |   androidboot.logcat=*:V
+INFO         |   androidboot.opengles.version=196608
+INFO         |   androidboot.qemu=1
+INFO         |   androidboot.qemu.adb.pubkey=QAAAAK1DGB7b54GK4XUhD1VbF8fccfFxYxNvJLxrcJjmlCvSIgfr7cDOKh4YARNANnYHwgf1HLcJ/b4+a29LAd5E+kIj/xyrJE0+MYKszcQ5vyuLPwLnbbUG6fDTFCIdUZAqTGlRH78gnb3N02INnACF14AFRkKt2GR+638LVpw6oF0+ZE4WKasMoCeGCZYqW6okBpSLb3xAmQ86uvr+fLlfZazXzAvH/se0pypoEMwoaoFHW2PAw74DmoxXyZoLboASho4MDqkBplll1uZJz2GyjdXAy/vYClbQH87z6tHD/pTFidwl6iH8NJaJHPaQK2OVsYOyTzdmJW9W/RyMOZ4zsQaslLLTaDSVcuGtvSSXtHm0/SR/RucqiEGGYwH7vIOTyiqA2fMCsgOK/UhLIhc+TzoHH+p5NGdGwSKd7wvp+qS8bZd1nT45N9yEBKDeCISLhiixgZP0rdgdFjkWLZvhHiHqcv6iwoJnuhKcw4t5mjCpMD4zxvGqpGUW+n/iaKc3Zu7bKx0d8ST6dG3gwh1GZjhruX1kjMfWSRSEgzYReSj9D5dmxAYmly0aD2/Vvc0E5RCW4CaO7t1np8zNqD583AMvoJ1Xm+YEtpkMZZNIC4StotYNNoacujFNeSbVa1HFdr4v+I+jk83csVwuvZEzo/m8VvXScJvP5YK4Fi339WbLD9d6YwEAAQA= v@unknown
+INFO         |   androidboot.qemu.avd_name=PlantLab-API36
+INFO         |   androidboot.qemu.camera_hq_edge_processing=0
+INFO         |   androidboot.qemu.camera_protocol_ver=1
+INFO         |   androidboot.qemu.cpuvulkan.version=4202496
+INFO         |   androidboot.qemu.gltransport.drawFlushInterval=800
+INFO         |   androidboot.qemu.gltransport.name=pipe
+INFO         |   androidboot.qemu.hwcodec.avcdec=2
+INFO         |   androidboot.qemu.hwcodec.hevcdec=2
+INFO         |   androidboot.qemu.hwcodec.vpxdec=2
+INFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647
+INFO         |   androidboot.qemu.virtiowifi=1
+INFO         |   androidboot.qemu.vsync=60
+INFO         |   androidboot.serialno=EMULATOR36X2X12X0
+INFO         |   androidboot.vbmeta.digest=293227bc6e6783d54fe0fb539c237cbe338734260603fb3e59aa73c947f45920
+INFO         |   androidboot.vbmeta.hash_alg=sha256
+INFO         |   androidboot.vbmeta.size=6720
+INFO         |   androidboot.veritymode=enforcing
+INFO         | Monitoring duration of emulator setup.
+WARNING      | The emulator now requires a signed jwt token for gRPC access! Use the -grpc flag if you really want an open unprotected grpc port
+INFO         | Using security allow list from: /home/v/Android/Sdk/emulator/lib/emulator_access.json
+WARNING      | *** Basic token auth should only be used by android-studio ***
+INFO         | The active JSON Web Key Sets can be found here: /run/user/1000/avd/running/3368887/jwks/0b72bdb4-ebd2-4067-a665-ccc06b1930a3/active.jwk
+INFO         | Scanning /run/user/1000/avd/running/3368887/jwks/0b72bdb4-ebd2-4067-a665-ccc06b1930a3 for jwk keys.
+INFO         | Started GRPC server at 127.0.0.1:8554, security: Local, auth: +token
+INFO         | Advertising in: /run/user/1000/avd/running/pid_3368887.ini
+INFO         | Setting display: 0 configuration to: 1080x2400, dpi: 420x420 
+INFO         | setDisplayActiveConfig 0
+USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+INFO         | Activated packet streamer for uwb emulation
+INFO         | Activated packet streamer for bluetooth emulation
+INFO         | Boot completed in 29213 ms
+INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+INFO         | Created VkInstance:0x56ebe6f55000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebd7b36010 for application:'maplibre-native' instance:0x56ebe6f55000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebd7b36010
+INFO         | Destroyed VkInstance:0x56ebe6f55000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebe6d95000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebdeb14010 for application:'maplibre-native' instance:0x56ebe6d95000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebdeb14010
+INFO         | Destroyed VkInstance:0x56ebe6d95000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebd0597000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebe1fc2010 for application:'maplibre-native' instance:0x56ebd0597000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebe1fc2010
+INFO         | Destroyed VkInstance:0x56ebd0597000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebe6d95000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebedffc010 for application:'maplibre-native' instance:0x56ebe6d95000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebedffc010
+INFO         | Destroyed VkInstance:0x56ebe6d95000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebdf8a4000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebdd9f8010 for application:'maplibre-native' instance:0x56ebdf8a4000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebdd9f8010
+INFO         | Destroyed VkInstance:0x56ebdf8a4000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebd0c34800 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebdd9f8010 for application:'maplibre-native' instance:0x56ebd0c34800. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebdd9f8010
+INFO         | Destroyed VkInstance:0x56ebd0c34800 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebd06b6800 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebdd9f8010 for application:'maplibre-native' instance:0x56ebd06b6800. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebdd9f8010
+INFO         | Destroyed VkInstance:0x56ebd06b6800 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebde202000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebec51e010 for application:'maplibre-native' instance:0x56ebde202000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebec51e010
+INFO         | Destroyed VkInstance:0x56ebde202000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebe72f8000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebde6b2010 for application:'maplibre-native' instance:0x56ebe72f8000. ASTC emulation:off CPU decoding:off.
+INFO         | Destroyed VkDevice:0x56ebde6b2010
+INFO         | Destroyed VkInstance:0x56ebe72f8000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkInstance:0x56ebe72f8000 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebe3cbc010 for application:'maplibre-native' instance:0x56ebe72f8000. ASTC emulation:off CPU decoding:off.
+INFO         | Created VkInstance:0x56ec00bff800 for application:'maplibre-native' engine:'maplibre-native'.
+INFO         | Created VkDevice:0x56ebd7514010 for application:'maplibre-native' instance:0x56ec00bff800. ASTC emulation:off CPU decoding:off.
+INFO         | Wait for emulator (pid 3368887) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+
+WARNING      | Not saving state: RAM not mapped as shared
+INFO         | Saving snapshot 'default_boot' using 1 ms
+ERROR        | stop: Not implemented

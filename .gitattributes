@@ -1,0 +1,4 @@
+* text=auto
+*.bat text eol=crlf
+evidence/*.log -whitespace
+evidence/*.txt -whitespace

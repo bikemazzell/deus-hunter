@@ -1,0 +1,6 @@
+app/src/test/java/io/github/deushunt/ServiceCleanupTest.java:12: error: cannot find symbol
+    ServiceCleanup.run(errors::add,
+    ^
+  symbol:   variable ServiceCleanup
+  location: class ServiceCleanupTest
+1 error

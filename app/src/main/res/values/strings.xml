@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Deus Hunter</string>
+    <string name="app_title">DEUS HUNTER</string>
+    <string name="no_detector">No detector selected</string>
+    <string name="selected_detector">Detector %1$s%2$s</string>
+    <string name="active_suffix"> · session active</string>
+    <string name="collection_status">%1$s\n%2$d detections · %3$d advertisements saved</string>
+    <string name="storage_error">Storage error: %1$s</string>
+</resources>

@@ -1,0 +1,17 @@
+plugins { id 'com.android.application' }
+android {
+ namespace 'io.github.deushunt'
+ compileSdk 36
+ defaultConfig { applicationId 'io.github.deushunt'; minSdk 26; targetSdk 36; versionCode 1; versionName '0.1.0'; testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner' }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+ buildFeatures { buildConfig true }
+}
+dependencies {
+ implementation 'io.github.deusble:deus-ble-android:0.1.0-SNAPSHOT'
+ implementation 'org.maplibre.gl:android-sdk:13.7.1'
+ implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+ testImplementation 'junit:junit:4.12'
+ androidTestImplementation 'androidx.test:runner:1.3.0'
+ androidTestImplementation 'androidx.test:rules:1.3.0'
+ androidTestImplementation 'junit:junit:4.12'
+}

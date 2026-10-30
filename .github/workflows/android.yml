@@ -1,0 +1,47 @@
+name: Android
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: deus-hunter
+      - uses: actions/checkout@v5
+        with:
+          repository: bikemazzell/deus-ble
+          ref: b79fd3d9f0780aa3e25f32ab44e46a5dcde0bf38
+          path: deus-ble
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK platform
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Publish pinned BLE dependency locally
+        working-directory: deus-ble
+        run: ./gradlew publish
+      - name: Unit tests, lint, and release build
+        working-directory: deus-hunter
+        run: ./gradlew -PdeusBleMaven=../deus-ble/build/maven testDebugUnitTest lintDebug assembleRelease
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          arch: x86_64
+          profile: pixel_6
+          script: cd deus-hunter && ./gradlew -PdeusBleMaven=../deus-ble/build/maven connectedDebugAndroidTest
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-test-results
+          path: |
+            deus-hunter/app/build/reports/
+            deus-hunter/app/build/outputs/apk/release/
