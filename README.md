@@ -52,7 +52,7 @@ Set `ANDROID_HOME` or an untracked `local.properties` file to your SDK path. Rel
 
 ## Tests and limits
 
-Unit tests cover coordinate age, grouping boundaries, and GPS validation. Instrumentation exercises database transactions, recovery, repeat receipts, streaming exports, fake BLE and GPS input, foreground collection while the activity is backgrounded, and restart behavior. Map tests use local resources; they do not bulk-download public map data. See [evidence](evidence/) for recorded runs and limits.
+Unit tests cover coordinate age, grouping boundaries, and GPS validation. Instrumentation exercises database transactions, recovery, repeat receipts, streaming exports, fake BLE and GPS input, foreground collection while the activity is backgrounded, and restart behavior. Map tests use local resources; they do not bulk-download public map data.
 
 An emulator cannot prove reception from a physical Deus II. Before relying on this app in the field, compare target and soil values against a real detector. Test PUSH/AUTO, repeated broadcasts, new sweeps, range loss and return, screen-off reception, and GPS accuracy. Record firmware, phone, and Android versions separately from emulator evidence.
 
