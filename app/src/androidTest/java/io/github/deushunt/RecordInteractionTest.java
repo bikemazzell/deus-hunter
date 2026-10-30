@@ -76,7 +76,7 @@ public class RecordInteractionTest {
           });
       click("Records");
       click("ID 48");
-      ForegroundFlowTest.await(() -> hasText("raw_hex:"));
+      awaitText("raw_hex:");
       assertTrue(hasText("target_id: 48"));
       assertTrue(hasText("fix_age_ns: 1"));
     } finally {
@@ -119,7 +119,7 @@ public class RecordInteractionTest {
             }
           });
       assertFalse("Storage failure must remain inside the UI boundary", escaped[0]);
-      ForegroundFlowTest.await(() -> hasText("Could not save this change"));
+      awaitText("Could not save this change");
       try (Cursor c =
           store
               .getReadableDatabase()
@@ -137,8 +137,40 @@ public class RecordInteractionTest {
     return root != null && !root.findAccessibilityNodeInfosByText(text).isEmpty();
   }
 
+  private void awaitText(String text) throws Exception {
+    long deadline = SystemClock.uptimeMillis() + 5000;
+    while (!hasText(text) && SystemClock.uptimeMillis() < deadline) Thread.sleep(50);
+    if (hasText(text)) return;
+    StringBuilder tree = new StringBuilder();
+    describe(instrumentation.getUiAutomation().getRootInActiveWindow(), tree);
+    android.os.PowerManager power =
+        (android.os.PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    fail(
+        "Missing UI text: "
+            + text
+            + "; interactive="
+            + power.isInteractive()
+            + "; active window="
+            + tree);
+  }
+
+  private void describe(AccessibilityNodeInfo node, StringBuilder out) {
+    if (node == null) {
+      out.append("null");
+      return;
+    }
+    out.append('[')
+        .append(node.getPackageName())
+        .append(':')
+        .append(node.getClassName())
+        .append(':')
+        .append(node.getText())
+        .append(']');
+    for (int i = 0; i < node.getChildCount(); i++) describe(node.getChild(i), out);
+  }
+
   private void click(String text) throws Exception {
-    ForegroundFlowTest.await(() -> hasText(text));
+    awaitText(text);
     AccessibilityNodeInfo root = instrumentation.getUiAutomation().getRootInActiveWindow();
     for (AccessibilityNodeInfo node : root.findAccessibilityNodeInfosByText(text)) {
       if (node.performAction(AccessibilityNodeInfo.ACTION_CLICK)) return;
